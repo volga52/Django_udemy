@@ -19,8 +19,10 @@ from django.urls import include
 
 import mainapp.views as mainapp
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', mainapp.main, name='main'),
     path('list_of_accommodations/', include('mainapp.urls', namespace='acc')),
+    # полдедняя строка отсылет к поиску ссылок в mainapp.urls
 ]
