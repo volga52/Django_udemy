@@ -25,7 +25,6 @@ def accommodations(request):
     return render(request, 'mainapp/accommodations.html', content)
 
 
-
 def accommodation(request, pk):
     title = 'продукты'
 
