@@ -28,6 +28,7 @@ urlpatterns = [
     path('list_of_accommodations/', include('mainapp.urls', namespace='acc')),
     # последняя строка отсылет к поиску ссылок в mainapp.urls
     path('auth/', include('authapp.urls', namespace='auth')),
+    path('', include('social_django.urls', namespace='social')),
 ]
 
 if settings.DEBUG:
