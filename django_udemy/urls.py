@@ -27,6 +27,7 @@ urlpatterns = [
     path('', mainapp.main, name='main'),
     path('list_of_accommodations/', include('mainapp.urls', namespace='acc')),
     # последняя строка отсылет к поиску ссылок в mainapp.urls
+    path('auth/', include('authapp.urls', namespace='auth')),
 ]
 
 if settings.DEBUG:
