@@ -23,12 +23,13 @@ import mainapp.views as mainapp
 # import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('', mainapp.main, name='main'),
     path('list_of_accommodations/', include('mainapp.urls', namespace='acc')),
     # последняя строка отсылет к поиску ссылок в mainapp.urls
     path('auth/', include('authapp.urls', namespace='auth')),
     path('', include('social_django.urls', namespace='social')),
+    path('admin/', include('adminapp.urls', namespace='admin')),
 ]
 
 if settings.DEBUG:
