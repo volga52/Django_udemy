@@ -18,16 +18,22 @@
               {{ object.name|title }}
             </div>
             <div class="category_actions">
-              <button>
-                <a href="{% url 'admin:country_update' object.pk %}">
-                  редактировать
-                </a>
-              </button>
-              <button>
-                <a href="{% url 'admin:country_delete' object.pk %}">
-                  удалить
-                </a>
-              </button>
+                <button>
+                    <a href="{% url 'admin:accommodations' object.pk %}">
+                        размещения
+                    </a>
+                </button>
+
+                <button>
+                    <a href="{% url 'admin:country_update' object.pk %}">
+                      редактировать
+                    </a>
+                </button>
+                <button>
+                    <a href="{% url 'admin:country_delete' object.pk %}">
+                      удалить
+                    </a>
+                </button>
             </div>
             <div class="category_desc">
               {{ object.description|title }}

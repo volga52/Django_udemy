@@ -170,12 +170,14 @@ html, body {
     color: #111;
 }
 
-.products_list {
-    margin-left: 250px;
-}
-
 .products_list .new_product {
     margin-left: 150px;
+}
+
+.products_list {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
 }
 
 .products_list button {
@@ -193,12 +195,14 @@ html, body {
 }
 
 .product_record {
+    display: inline-table;
     height: 125px;
     margin: 15px auto;
     position: relative;
 }
 
 .product_record.not_active {
+    display: inline-table;
     opacity: 0.5;
 }
 
