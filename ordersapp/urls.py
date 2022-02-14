@@ -13,5 +13,5 @@ urlpatterns = [
          name='order_delete'),
     path('forming/complete/<int:pk>/', ordersapp.order_forming_complete,
          name='order_forming_complete'),
-
+    path('edit/<str:context>/<int:nights>/', ordersapp.orders_edit, name='edit'),
 ]

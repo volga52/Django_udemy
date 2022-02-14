@@ -3,6 +3,9 @@ from django.shortcuts import HttpResponseRedirect
 from django.urls import reverse
 from django.urls import reverse_lazy
 from django.db import transaction
+from django.template.loader import render_to_string
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 
 from django.forms import inlineformset_factory
 
@@ -16,6 +19,7 @@ from basketapp.models import Basket
 from ordersapp.models import Order
 from ordersapp.models import OrderItem
 from ordersapp.forms import OrderItemForm
+from mainapp.models import Accommodation
 
 
 class OrderList(ListView):
@@ -91,8 +95,11 @@ class OrderItemsUpdate(UpdateView):
         if self.request.POST:
             data['orderitems'] = OrderFormSet(
                 self.request.POST, instance=self.object)
+            print('This POST')
+
         else:
             formset = OrderFormSet(instance=self.object)
+            print(data)
             for form in formset.forms:
                 if form.instance.pk:
                     form.initial['price'] = form.instance.accommodation.price
@@ -137,3 +144,34 @@ def order_forming_complete(request, pk):
     order.save()
 
     return HttpResponseRedirect(reverse('ordersapp:orders_list'))
+
+@login_required
+def orders_edit(request, context, nights):
+    # if request.is_ajax():
+    #     nights = int(nights)
+    #     if context.isnumeric():
+    #         new_order_item = Accommodation.objects.get(pk=int(context))
+    #
+    #         if nights > 0:
+    #             print(context, nights)
+    #             new_order_item.nights =nights
+    #             new_order_item.save()
+    #         else:
+    #             new_order_item.delete()
+    #
+    #     # orderitems = OrderItem.objects.filter(user=request.user)
+    #     print('order_i', vars(request))
+    #     print(request, request.user, request.user.pk)
+    #     # < WSGIRequest: GET '/order/edit/orderitems-0-nights/4/' > volga52 2
+    #     a = str(request)
+    #     b = a.split('/')
+    #     print(b[-3])
+    #
+    #     # orderitems = OrderItem.objects.filter(order_id=a)
+    #     # content = {'orderitems': orderitems}
+    #     # result = render_to_string(f'order/update/{request.order}/', content)
+    #     # result = render_to_string(f'order/update/{a}/', content)
+    #     # return JsonResponse({'result': result})
+    # else:
+    #     print('AJAX on')
+    return
